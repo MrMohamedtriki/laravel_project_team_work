@@ -8,7 +8,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
-
+/*555gg*/
 
 Route::get('/', function () {
     return view('welcome');
