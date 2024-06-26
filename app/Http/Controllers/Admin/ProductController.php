@@ -28,8 +28,10 @@ class ProductController extends Controller
     public function index()
     {
         
-        $data=ProductModel::all();
-        return view('admin.indexAdmin',['data'=>$data]);
+        //$data=ProductModel::all();
+        //return view('admin.indexAdmin',['data'=>$data]);
+        return view('admin.indexAdmin');
+
         
         //$products = ProductModel::all();
         //return view('admin.produit', ['products' => $products]);

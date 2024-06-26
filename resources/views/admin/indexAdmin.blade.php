@@ -36,7 +36,7 @@
                                 <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             @foreach($data as $dt)
                             <tr>
                                 <td><img class="rounded-circle" width="35" src="{{ asset('images/profile/small/pic1.jpg') }}" alt=""></td>
@@ -58,7 +58,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
             </div>

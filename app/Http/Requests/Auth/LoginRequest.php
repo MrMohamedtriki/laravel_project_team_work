@@ -51,6 +51,25 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
     }
+    // public function authenticate()
+    // {
+    //     $this->ensureIsNotRateLimited();
+
+    //     $user = User::where('email', $this->email)->first();
+
+    //     if (!$user || $this->password !== $user->password) {
+    //         RateLimiter::hit($this->throttleKey());
+
+    //         throw ValidationException::withMessages([
+    //             'email' => __('auth.failed'),
+    //         ]);
+    //     }
+
+    //     Auth::login($user, $this->boolean('remember'));
+
+    //     RateLimiter::clear($this->throttleKey());
+    // }
+
 
     /**
      * Ensure the login request is not rate limited.
