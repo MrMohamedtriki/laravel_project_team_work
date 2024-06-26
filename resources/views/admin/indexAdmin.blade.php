@@ -60,12 +60,15 @@
                             @endforeach
                         </tbody> --}}
                     </table>
+                    
                 </div>
             </div>
         </div>
     </div>
     
-    <script src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
+    <script src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}">
+    //jessem sabiya benti 
+    </script>
     <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
