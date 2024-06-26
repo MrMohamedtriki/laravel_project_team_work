@@ -45,7 +45,7 @@ class AdminController extends Controller
 
         ];
         if(Auth::guard('admin')->attempt($data)){
-            return redirect()->route('admin.produit')->with('success','Login Success');
+            return redirect()->route('AdminDashboard')->with('success','Login Success');
         }
         else{
             return redirect()->route('admin.login')->with('error','Invalid Credentials');

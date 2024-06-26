@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/AdminProduit', [ProductController::class, 'index'])->name('admin.produit');
-    Route::get('/AdminDashboard', [WebLoginController::class, 'index'])->name('web.index');
+    Route::get('/AdminDashboard', [WebLoginController::class, 'index'])->name('AdminDashboard');
     Route::post('/produit', [ProductController::class, 'store'])->name('admin.produit.store');
     Route::get('/produit/create', [ProductController::class, 'create'])->name('produit.create');
 
