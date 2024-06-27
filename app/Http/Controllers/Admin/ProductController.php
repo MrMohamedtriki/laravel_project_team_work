@@ -55,6 +55,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the request data
         $request->validate([
             'description' => 'nullable|string',
             'marque' => 'required|string',
@@ -67,8 +68,8 @@ class ProductController extends Controller
             'tva' => 'required|numeric',
         ]);
     
+        // Create a new product instance and assign request data to its properties
         $product = new produit();
-        $product->id = $request->input('id'); // Assuming you have 'id' in your form inputs
         $product->description = $request->input('description');
         $product->marque = $request->input('marque');
         $product->nom = $request->input('nom');
@@ -79,9 +80,10 @@ class ProductController extends Controller
         $product->taille = $request->input('taille');
         $product->tva = $request->input('tva');
     
+        // Save the product to the database
         $product->save();
     
-        // Assuming you have a route named 'produit.create', you can redirect to it
+        // Redirect to the create product route with a success message
         return redirect()->route('produit.create')->with('success', 'Produit ajouté avec succès.');
     }
     
@@ -96,91 +98,44 @@ class ProductController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-//     public function edit($id)
-// {
-//     $product = ProductModel::findOrFail($id);
-//     return view('admin.edit', ['data' => $product]);
-// }
-public function edit($id)
-{
-    $product = produit::findOrFail($id);
-    $user = Auth::guard('admin')->user(); // Assuming you're using a guard named 'admin'
-    return view('admin.edit', compact('product', 'user'));
-}
 
-
-
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'description' => 'nullable|string',
-        'marque' => 'required|string',
-        'nom' => 'required|string',
-        'prix' => 'required|numeric',
-        'prixAchatHt' => 'required|numeric',
-        'quantiteStock' => 'required|integer',
-        'stockAlerte' => 'required|integer',
-        'taille' => 'required|numeric',
-        'tva' => 'required|numeric',
-    ]);
-
-    $product = produit::findOrFail($id);
-    $product->update([
-        'description' => $request->input('description'),
-        'marque' => $request->input('marque'),
-        'nom' => $request->input('nom'),
-        'prix' => $request->input('prix'),
-        'prixAchatHt' => $request->input('prixAchatHt'),
-        'quantiteStock' => $request->input('quantiteStock'),
-        'stockAlerte' => $request->input('stockAlerte'),
-        'taille' => $request->input('taille'),
-        'tva' => $request->input('tva'),
-    ]);
-
-    return redirect()->route('admin.produit')->with('success', 'Produit mis à jour avec succès.');
-}
-
-
-
-    // $request->validate([
-    //     'description' => 'nullable|string',
-    //     'marque' => 'required|string',
-    //     'nom' => 'required|string',
-    //     'prix' => 'required|numeric',
-    //     'prixAchatHt' => 'required|numeric',
-    //     'quantiteStock' => 'required|integer',
-    //     'stockAlerte' => 'required|integer',
-    //     'taille' => 'required|numeric',
-    //     'tva' => 'required|numeric',
-    // ]);
-
-    // $product = produit::findOrFail($id);
-    // $product->description = $request->input('description');
-    // $product->marque = $request->input('marque');
-    // $product->nom = $request->input('nom');
-    // $product->prix = $request->input('prix');
-    // $product->prixAchatHt = $request->input('prixAchatHt');
-    // $product->quantiteStock = $request->input('quantiteStock');
-    // $product->stockAlerte = $request->input('stockAlerte');
-    // $product->taille = $request->input('taille');
-    // $product->tva = $request->input('tva');
+    public function edit($id)
+    {
+        $product = produit::findOrFail($id);
+        return view('admin.edit', compact('product'));
+    }
     
-    // $product->save();
-    // return redirect()->route('admin.produit')->with('success', 'Produit mis à jour avec succès.');
+    public function produitupdate(Request $request, $id)
+    {
+
+        $product = produit::find($id);
+       
+    
+        $product->description = $request->input('description');
+        $product->marque = $request->input('marque');
+
+        $product->nom = $request->input('nom');
+        $product->prix = $request->input('prix');
+
+        $product->quantiteStock = $request->input('quantiteStock');
+        $product->stockAlerte = $request->input('stockAlerte');
+
+        $product->tva = $request->input('tva');
+        $product->save();
+    
+      
+        return redirect()->route('admin.produit', $id)->with('success', 'Produit mis à jour avec succès.');
+    }
+    
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-{
-    $product = produit::findOrFail($id);
-    $product->delete();
 
-    return redirect()->route('admin.produit')->with('success', 'Product deleted successfully');
-}
+                public function destroy($id)
+            {
+                $product = produit::findOrFail($id);
+                $product->delete();
+
+                return redirect()->route('admin.produit')->with('success', 'Product deleted successfully');
+            }
 
 }

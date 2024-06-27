@@ -38,11 +38,11 @@ margin-top: 15%;
         </div>
         <div class="form-group">
             <label for="quantity">marque</label>
-            <input type="number" class="form-control" id="marque" name="marque" required>
+            <input type="text" class="form-control" id="marque" name="marque" required>
         </div>
         <div class="form-group">
             <label for="price">nom</label>
-            <input type="number" class="form-control" id="nom" name="nom" required>
+            <input type="text" class="form-control" id="nom" name="nom" required>
         </div>
         <div class="form-group">
             <label for="price">prix</label>

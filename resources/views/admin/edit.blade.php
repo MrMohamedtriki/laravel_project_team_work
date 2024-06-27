@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Edit Product</h1>
-        <form action="{{ route('admin.produit.update', $product->id) }}" method="POST">
+        <form action="{{ route('admin.produitupdate', $product->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -34,7 +34,6 @@
                 <label for="tva">TVA</label>
                 <input type="number" class="form-control" id="tva" name="tva" value="{{ $product->tva }}">
             </div>
-           
             <button type="submit" class="btn btn-primary">Update Product</button>
         </form>
     </div>

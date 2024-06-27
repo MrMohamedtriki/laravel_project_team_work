@@ -38,9 +38,12 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     //     return view('createproduit', ['user' => Auth::guard('admin')->user()]);
     // })->name('produit.create');
     
-
     Route::get('/produit/{id}/edit', [ProductController::class, 'edit'])->name('admin.produit.edit');
-    Route::put('/produit/{id}', [ProductController::class, 'update'])->name('admin.produit.update');
+    Route::put('/admin/produit/{id}', [ProductController::class, 'produitupdate'])->name('admin.produitupdate');
+
+
+    
+
     Route::delete('/produit/{id}', [ProductController::class, 'destroy'])->name('produit.destroy');
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
