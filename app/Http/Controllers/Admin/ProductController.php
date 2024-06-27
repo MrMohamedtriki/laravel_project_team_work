@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\cr;
-use App\Models\ProductModel;
+use App\Models\produit;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,22 +22,22 @@ class ProductController extends Controller
      */
     public function indexUser()
 {
-    $data = ProductModel::all();
+    $data = produit::all();
     return view('web.dashboard', compact('data'));
 }
     public function index()
     {
         
-        //$data=ProductModel::all();
-        //return view('admin.indexAdmin',['data'=>$data]);
-        return view('admin.indexAdmin');
+        $data=produit::all();
+        return view('admin.indexAdmin',['data'=>$data]);
+        //return view('admin.indexAdmin');
 
         
         //$products = ProductModel::all();
         //return view('admin.produit', ['products' => $products]);
     }
     public function showProducts() {
-        $products = ProductModel::all();
+        $products = produit::all();
         return view('admin.produit', compact('products'));
     }
     
@@ -56,26 +56,34 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'quantity' => 'required|integer',
-            'price' => 'required|numeric',
-            'is_available' => 'required|boolean',
             'description' => 'nullable|string',
-        ]);  
-        
-        $product = new ProductModel();
-        $product->name = $request->input('name');
-        $product->quantity = $request->input('quantity');
-        $product->price = $request->input('price');
-        $product->is_available = $request->input('is_available');
+            'marque' => 'required|string',
+            'nom' => 'required|string',
+            'prix' => 'required|numeric',
+            'prixAchatHt' => 'required|numeric',
+            'quantiteStock' => 'required|integer',
+            'stockAlerte' => 'required|integer',
+            'taille' => 'required|numeric',
+            'tva' => 'required|numeric',
+        ]);
+    
+        $product = new produit();
+        $product->id = $request->input('id'); // Assuming you have 'id' in your form inputs
         $product->description = $request->input('description');
-        
+        $product->marque = $request->input('marque');
+        $product->nom = $request->input('nom');
+        $product->prix = $request->input('prix');
+        $product->prixAchatHt = $request->input('prixAchatHt');
+        $product->quantiteStock = $request->input('quantiteStock');
+        $product->stockAlerte = $request->input('stockAlerte');
+        $product->taille = $request->input('taille');
+        $product->tva = $request->input('tva');
+    
         $product->save();
     
-        // Assuming you have a route named 'admin.produit.create', you can redirect to it
+        // Assuming you have a route named 'produit.create', you can redirect to it
         return redirect()->route('produit.create')->with('success', 'Produit ajouté avec succès.');
     }
-    
     
 
     /**
@@ -83,7 +91,7 @@ class ProductController extends Controller
      */
     public function show(cr $cr)
     {
-        $products = ProductModel::all();
+        $products = produit::all();
         return view('admin.produit', compact('products'));
         
     }
@@ -98,38 +106,78 @@ class ProductController extends Controller
 // }
 public function edit($id)
 {
-    $product = ProductModel::findOrFail($id);
+    $product = produit::findOrFail($id);
     $user = Auth::guard('admin')->user(); // Assuming you're using a guard named 'admin'
-    return view('admin.edit', ['data' => $product, 'user' => $user]);
+    return view('admin.edit', compact('product', 'user'));
 }
+
 
 
 public function update(Request $request, $id)
 {
     $request->validate([
-        'name' => 'required',
-        'quantity' => 'required|integer',
-        'price' => 'required|numeric',
-        'is_available' => 'required|boolean',
         'description' => 'nullable|string',
+        'marque' => 'required|string',
+        'nom' => 'required|string',
+        'prix' => 'required|numeric',
+        'prixAchatHt' => 'required|numeric',
+        'quantiteStock' => 'required|integer',
+        'stockAlerte' => 'required|integer',
+        'taille' => 'required|numeric',
+        'tva' => 'required|numeric',
     ]);
 
-    $product = ProductModel::findOrFail($id);
-    $product->name = $request->input('name');
-    $product->quantity = $request->input('quantity');
-    $product->price = $request->input('price');
-    $product->is_available = $request->input('is_available');
-    $product->description = $request->input('description');
-    $product->save();
+    $product = produit::findOrFail($id);
+    $product->update([
+        'description' => $request->input('description'),
+        'marque' => $request->input('marque'),
+        'nom' => $request->input('nom'),
+        'prix' => $request->input('prix'),
+        'prixAchatHt' => $request->input('prixAchatHt'),
+        'quantiteStock' => $request->input('quantiteStock'),
+        'stockAlerte' => $request->input('stockAlerte'),
+        'taille' => $request->input('taille'),
+        'tva' => $request->input('tva'),
+    ]);
 
     return redirect()->route('admin.produit')->with('success', 'Produit mis à jour avec succès.');
 }
+
+
+
+    // $request->validate([
+    //     'description' => 'nullable|string',
+    //     'marque' => 'required|string',
+    //     'nom' => 'required|string',
+    //     'prix' => 'required|numeric',
+    //     'prixAchatHt' => 'required|numeric',
+    //     'quantiteStock' => 'required|integer',
+    //     'stockAlerte' => 'required|integer',
+    //     'taille' => 'required|numeric',
+    //     'tva' => 'required|numeric',
+    // ]);
+
+    // $product = produit::findOrFail($id);
+    // $product->description = $request->input('description');
+    // $product->marque = $request->input('marque');
+    // $product->nom = $request->input('nom');
+    // $product->prix = $request->input('prix');
+    // $product->prixAchatHt = $request->input('prixAchatHt');
+    // $product->quantiteStock = $request->input('quantiteStock');
+    // $product->stockAlerte = $request->input('stockAlerte');
+    // $product->taille = $request->input('taille');
+    // $product->tva = $request->input('tva');
+    
+    // $product->save();
+    // return redirect()->route('admin.produit')->with('success', 'Produit mis à jour avec succès.');
+
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
 {
-    $product = ProductModel::findOrFail($id);
+    $product = produit::findOrFail($id);
     $product->delete();
 
     return redirect()->route('admin.produit')->with('success', 'Product deleted successfully');

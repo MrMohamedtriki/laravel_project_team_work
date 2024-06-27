@@ -33,28 +33,42 @@ margin-top: 15%;
         
         <br>
         <div class="form-group" >
-            <label for="name">Nom du produit</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <label for="name">description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
         </div>
         <div class="form-group">
-            <label for="quantity">Quantité</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" required>
+            <label for="quantity">marque</label>
+            <input type="number" class="form-control" id="marque" name="marque" required>
         </div>
         <div class="form-group">
-            <label for="price">Prix</label>
-            <input type="number" class="form-control" id="price" name="price" required>
+            <label for="price">nom</label>
+            <input type="number" class="form-control" id="nom" name="nom" required>
         </div>
         <div class="form-group">
-            <label for="is_available">Disponible</label>
-            <select class="form-control" id="is_available" name="is_available" required>
-                <option value="1">Oui</option>
-                <option value="0">Non</option>
-            </select>
+            <label for="price">prix</label>
+            <input type="number" class="form-control" id="prix" name="prix" required>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <label for="price">prixAchatHt</label>
+            <input type="number" class="form-control" id="prixAchatHt" name="prixAchatHt" required>
         </div>
+        <div class="form-group">
+            <label for="price">quantiteStock</label>
+            <input type="number" class="form-control" id="quantiteStock" name="quantiteStock" required>
+        </div>
+        <div class="form-group">
+            <label for="price">stockAlerte</label>
+            <input type="number" class="form-control" id="stockAlerte" name="stockAlerte" required>
+        </div>
+        <div class="form-group">
+            <label for="price">taille</label>
+            <input type="number" class="form-control" id="taille" name="taille" required>
+        </div>
+        <div class="form-group">
+            <label for="price">tva</label>
+            <input type="number" class="form-control" id="tva" name="tva" required>
+        
+        
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>

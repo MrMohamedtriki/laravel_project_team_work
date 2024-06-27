@@ -28,29 +28,44 @@
                             <tr role="row">
                                 <th>Img</th>
                                 <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 35px;">ID</th>
-                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 113.463px;">Nom du produit</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Department: activate to sort column descending" style="width: 137.413px;" aria-sort="ascending">Quantité</th>
-                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Gender: activate to sort column ascending" style="width: 58.075px;">Prix</th>
-                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Education: activate to sort column ascending" style="width: 105.887px;">Disponible</th>
-                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Mobile: activate to sort column ascending" style="width: 82.75px;">Description</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 113.463px;">description</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Department: activate to sort column descending" style="width: 137.413px;" aria-sort="ascending">marque</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Gender: activate to sort column ascending" style="width: 58.075px;">nom</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Education: activate to sort column ascending" style="width: 105.887px;">prix</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Mobile: activate to sort column ascending" style="width: 82.75px;">prixAchatHt</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">quantiteStock</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">stockAlerte</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">taille</th>
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">tva</th>
                                 <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Joining Date: activate to sort column ascending" style="width: 101.287px;">Actions</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
+                        <tbody>
                             @foreach($data as $dt)
                             <tr>
                                 <td><img class="rounded-circle" width="35" src="{{ asset('images/profile/small/pic1.jpg') }}" alt=""></td>
                                 <td>{{ $dt->id }}</td>
-                                <td>{{ $dt->name }}</td>
-                                <td>{{ $dt->quantity }}</td>
-                                <td>{{ $dt->price }}</td>
-                                <td>{{ $dt->available }}</td>
                                 <td>{{ $dt->description }}</td>
+                                <td>{{ $dt->marque }}</td>
+                                <td>{{ $dt->nom }}</td>
+                                <td>{{ $dt->prix }}</td>
+                                <td>{{ $dt->prixAchatHt }}</td>
+                                <td>{{ $dt->quantiteStock }}</td>
+                                <td>{{ $dt->stockAlerte }}</td>
+                                <td>{{ $dt->taille }}</td>
+                                <td>{{ $dt->tva }}</td>
+
                                 <td>
                                     <div class="d-flex">
+                            
+
                                         <a href="{{ route('admin.produit.edit', $dt->id) }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+
                                         <form action="{{ route('produit.destroy', $dt->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                             @csrf
+
+
+                                
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></button>
                                         </form>
@@ -58,7 +73,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                     
                 </div>
@@ -67,7 +82,6 @@
     </div>
     
     <script src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}">
-    //jessem sabiya benti 
     </script>
     <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
