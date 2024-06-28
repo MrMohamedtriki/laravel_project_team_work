@@ -20,7 +20,6 @@ Route::get('/index', [WebLoginController::class, 'offre'])->name('web.offre');
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -32,7 +31,9 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/AdminProduit', [ProductController::class, 'index'])->name('admin.produit');
     Route::get('/AdminDashboard', [WebLoginController::class, 'index'])->name('AdminDashboard');
     Route::post('/produit', [ProductController::class, 'store'])->name('admin.produit.store');
-    Route::get('/produit/create', [ProductController::class, 'create'])->name('produit.create');
+    Route::get('/produit/create', [ProductController::class, 'create'])->name('admin.produit.create');
+   // Route::get('/admin/produit/create', [ProductController::class, 'create'])->name('admin.produit.create');
+
 
     // Route::get('/produit/create', function () {
     //     return view('createproduit', ['user' => Auth::guard('admin')->user()]);

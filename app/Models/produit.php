@@ -21,6 +21,11 @@ class produit extends Model
             'tva'
  
      ];
+     public function parametre()
+     {
+         return $this->belongsTo(Parametre::class);
+     }
+ 
  
     use HasFactory;
 }

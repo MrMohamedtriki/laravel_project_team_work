@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parametre', function (Blueprint $table) {
+        Schema::create('parametres', function (Blueprint $table) {
 
-            $table->integer('id');
+            $table->id(); // This should automatically set the id as auto-incrementing
             $table->integer('compteur');
             $table->string('prefixe');
             $table->string('separateur');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parametre');
+        Schema::dropIfExists('parametres');
     }
 };

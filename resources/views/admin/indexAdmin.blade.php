@@ -26,8 +26,8 @@
                     <table id="example5" class="display" style="min-width: 845px">
                         <thead>
                             <tr role="row">
-                                <th>Img</th>
-                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 35px;">ID</th>
+                                {{-- <th>Img</th> --}}
+                                <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 35px;">Code</th>
                                 <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 113.463px;">description</th>
                                 <th class="sorting_asc" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Department: activate to sort column descending" style="width: 137.413px;" aria-sort="ascending">marque</th>
                                 <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1" colspan="1" aria-label="Gender: activate to sort column ascending" style="width: 58.075px;">nom</th>
@@ -43,8 +43,8 @@
                         <tbody>
                             @foreach($data as $dt)
                             <tr>
-                                <td><img class="rounded-circle" width="35" src="{{ asset('images/profile/small/pic1.jpg') }}" alt=""></td>
-                                <td>{{ $dt->id }}</td>
+                                {{-- <td><img class="rounded-circle" width="35" src="{{ asset('images/profile/small/pic1.jpg') }}" alt=""></td> --}}
+                                <td>{{ $dt->code }}</td>
                                 <td>{{ $dt->description }}</td>
                                 <td>{{ $dt->marque }}</td>
                                 <td>{{ $dt->nom }}</td>

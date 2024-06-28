@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use Illuminate\Support\Facades\DB; // Add this line for DB facade
+
+use App\Models\Parametre;
+
 use App\Http\Controllers\Controller;
 
 use App\Models\cr;
@@ -68,8 +72,12 @@ class ProductController extends Controller
             'tva' => 'required|numeric',
         ]);
     
+        // Generate the code for the product
+        $code = $this->generate_code('produit');
+    
         // Create a new product instance and assign request data to its properties
         $product = new produit();
+        $product->code = $code;
         $product->description = $request->input('description');
         $product->marque = $request->input('marque');
         $product->nom = $request->input('nom');
@@ -84,8 +92,9 @@ class ProductController extends Controller
         $product->save();
     
         // Redirect to the create product route with a success message
-        return redirect()->route('produit.create')->with('success', 'Produit ajouté avec succès.');
+        return redirect()->route('admin.produit.create')->with('success', 'Produit ajouté avec succès.');
     }
+    
     
 
     /**
@@ -136,6 +145,14 @@ class ProductController extends Controller
                 $product->delete();
 
                 return redirect()->route('admin.produit')->with('success', 'Product deleted successfully');
+            }
+            private function generate_code($tableName)
+            {
+                $parametre = Parametre::where('table', $tableName)->first();
+                $code = $parametre->prefixe . $parametre->separateur . str_pad($parametre->compteur, $parametre->taille, '0', STR_PAD_LEFT);
+                $parametre->compteur++;
+                $parametre->save();
+                return $code;
             }
 
 }
